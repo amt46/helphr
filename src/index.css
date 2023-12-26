@@ -1,68 +1,324 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --hover: rgb(228, 230, 233);
+  --text: #050505;
+  --cart: #ffffff;
+  --back: #eeeeee;
+  --inactive-text: #868686;
+  --active-color: #dfe9f2;
+  --inactive-btn: #e4e6eb;
+  --nav-color: #6e7074;
+  --nav-bg: #e4e6eb;
+  --color1: #efe3f0;
+  --color2: #e2edfc;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+[data-theme="dark"] {
+  --hover: #303031;
+  --text: rgb(226, 228, 233);
+  --cart: #242526;
+  --back: #201f1f;
+  --inactive-text: #b0b3b8;
+  --active-color: #253950;
+  --inactive-btn: #505151;
+  --nav-color: #b0b3b8;
+  --nav-bg: #3a3b3c;
+  --color1: #494949;
+  --color2: #4974af;
 }
-a:hover {
-  color: #535bf2;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
+  background-image: linear-gradient(
+    -120deg,
+    var(--color1) 10%,
+    var(--color2) 90%
+  );
+  color: var(--text);
+  font-size: 14px;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+  font-family: -apple-system, "Poppins", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.header {
+  height: 56px;
+  padding: 6px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px var(--inactive-text) solid;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.hover:hover {
+  background-color: var(--hover);
+  color: var(--text);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.hover-color {
+  background-color: var(--hover);
+}
+
+.nav-bg {
+  background: var(--nav-bg);
+}
+
+.nav-text {
+  color: var(--nav-color);
+}
+
+.inactive-btn {
+  background-color: var(--inactive-btn);
+  color: var(--inactive-text);
+}
+
+.active-color {
+  background-color: var(--active-color);
+  color: #2666ff;
+}
+
+.on {
+  outline: none;
+}
+
+.cart-bg {
+  background-color: var(--cart);
+  color: var(--text);
+}
+
+.inactive-text {
+  color: var(--inactive-text);
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shadow-m {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* table */
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 0%;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.item-container {
+  display: flex;
+  flex-basis: 0%;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.item {
+  border-bottom: 1px solid rgb(218, 220, 224);
+  display: flex;
+  flex-basis: 0%;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  border-bottom: 0.4px solid rgb(214, 214, 214);
+}
+
+.cell {
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.shadow-popup {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+/* loading */
+.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.double-bounce1,
+.double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: sk-bounce 2s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  animation-delay: -1s;
+}
+
+@keyframes sk-bounce {
+  0%,
+  100% {
+    transform: scale(0);
   }
-  a:hover {
-    color: #747bff;
+  50% {
+    transform: scale(1);
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+/* department card */
+.card {
+  transition: transform 0.3s;
+  width: 300px;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.07);
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card-header p {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.card-body {
+  padding: 0.5rem 1rem;
+  height: 200px;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.card-body strong {
+  color: #4b5563;
+}
+
+.card-footer {
+  padding: 0.5rem 1rem;
+  color: #4b5563;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #636363; /* Change to desired hover color */
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  /*  -webkit-box- : inset 0 0 6px pink; */
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 30px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #bdc1c6;
+  /*  -webkit-box- : inset 0 0 6px blue; */
+}
+
+/* Select the spin buttons and set their width to zero */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
   }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.skeleton-loader {
+  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.sketch-picker {
+  border: none !important;
+  background-color: red;
+}
+
+.animate-border {
+  border: solid 1px red;
+  animation: animate-border 2s linear infinite;
+}
+
+@keyframes animate-border {
+  0% {
+    border-color: red;
+  }
+  25% {
+    border-color: orange;
+  }
+  50% {
+    border-color: yellow;
+  }
+  75% {
+    border-color: lime;
+  }
+  100% {
+    border-color: red;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.react-datepicker__month-container {
+  color: #969eac;
+  font-family: "Poppins";
+}
+
+input {
+  outline: none;
+  background-color: transparent;
+}
+
+textarea {
+  background-color: transparent;
 }
