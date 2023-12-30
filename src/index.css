@@ -1,8 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --hover: rgb(228, 230, 233);
   --text: #050505;
   --cart: #ffffff;
-  --back: #eeeeee;
+  --back: #ffffff;
   --inactive-text: #868686;
   --active-color: #dfe9f2;
   --inactive-btn: #e4e6eb;
@@ -33,11 +37,7 @@
 }
 
 body {
-  background-image: linear-gradient(
-    -120deg,
-    var(--color1) 10%,
-    var(--color2) 90%
-  );
+  background-image: var(--back);
   color: var(--text);
   font-size: 14px;
   margin: 0;
@@ -55,6 +55,10 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px var(--inactive-text) solid;
+}
+
+.active-nav-bg {
+  background-color: #f0f0f0;
 }
 
 .hover:hover {
