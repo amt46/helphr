@@ -8,10 +8,10 @@ interface navigationProps {
 
 const Navigation: FC<navigationProps> = ({ routes }) => {
   return (
-    <div className="border-r w-[180px] min-h-screen">
+    <div>
       {routes.map((nav, k) => {
         return (
-          <div key={k} className="w-full">
+          <div key={k} className="w-[300px] min-h-full">
             <p className="font-semibold px-4 py-2">{nav.name}</p>
             <div className="flex flex-col">
               {nav.routes.map((rou, r) => (
@@ -21,7 +21,7 @@ const Navigation: FC<navigationProps> = ({ routes }) => {
                       isActive && "active-nav-bg"
                     }`
                   }
-                  to={rou.name}
+                  to={rou.name === "drawShift" ? "" : rou.name.toLowerCase()}
                   key={r}
                 >
                   {rou.name

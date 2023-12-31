@@ -1,10 +1,12 @@
 import { IconType } from "react-icons";
 import { AiOutlineHome } from "react-icons/ai";
 import { FaBuilding } from "react-icons/fa";
-
+import PlannerWeek from "./toturial/PlannerWeek";
 import Navigation from "./Navigation";
 import { ReactNode } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { stylex } from "@stylexjs/stylex";
+import { colors } from "./header.stylex";
 
 export type NavType = {
   name: string;
@@ -19,6 +21,15 @@ export type MainNav = {
   routes: NavType[];
 };
 
+const styles = stylex.create({
+  root: {
+    display: "flex",
+    minHeight: "100vh",
+    backgroundColor: colors.primaryBackColor,
+    color: colors.primaryTextColor,
+  },
+});
+
 const routes: MainNav[] = [
   {
     name: "Planner",
@@ -27,7 +38,7 @@ const routes: MainNav[] = [
       {
         name: "drawShift",
         icon: FaBuilding,
-        element: <div>Draw Shift</div>,
+        element: <PlannerWeek />,
       },
       {
         name: "drawShift2",
@@ -67,22 +78,22 @@ const routes: MainNav[] = [
     ],
   },
 ];
+
 function App() {
   return (
     <Router>
-      <div className="flex max-w-[1200px] mx-auto">
+      <div {...stylex.props(styles.root)}>
         <Navigation routes={routes} />
         <Routes>
           {routes.map((i) => {
-            return i.routes.map((rou, r) => (
-              <Route
-                key={r}
-                path={`/${
-                  rou.name === "drawShift" ? "" : i.name.toLowerCase()
-                }`}
-                element={rou.element}
-              />
-            ));
+            return i.routes.map((rou, r) => {
+              const routendame =
+                rou.name === "drawShift" ? "" : rou.name.toLowerCase();
+              console.log(routendame);
+              return (
+                <Route key={r} path={`${routendame}`} element={rou.element} />
+              );
+            });
           })}
         </Routes>
       </div>

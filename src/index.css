@@ -29,6 +29,9 @@
   --color1: #494949;
   --color2: #4974af;
 }
+.active{
+  background-color: "blue";
+}
 
 * {
   padding: 0;
