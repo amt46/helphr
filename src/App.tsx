@@ -5,8 +5,6 @@ import PlannerWeek from "./toturial/PlannerWeek";
 import Navigation from "./Navigation";
 import { ReactNode } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-import { stylex } from "@stylexjs/stylex";
-import { colors } from "./header.stylex";
 
 export type NavType = {
   name: string;
@@ -20,16 +18,6 @@ export type MainNav = {
   icon?: IconType;
   routes: NavType[];
 };
-
-const styles = stylex.create({
-  root: {
-    display: "flex",
-    minHeight: "100vh",
-    backgroundColor: colors.primaryBackColor,
-    color: colors.primaryTextColor,
-  },
-});
-
 const routes: MainNav[] = [
   {
     name: "Planner",
@@ -82,13 +70,14 @@ const routes: MainNav[] = [
 function App() {
   return (
     <Router>
-      <div {...stylex.props(styles.root)}>
+      <div className="flex">
         <Navigation routes={routes} />
         <Routes>
           {routes.map((i) => {
             return i.routes.map((rou, r) => {
-              const routendame =
-                rou.name === "drawShift" ? "" : rou.name.toLowerCase();
+              const routendame = `/${
+                rou.name === "drawShift" ? "" : rou.name.toLowerCase()
+              }`;
               console.log(routendame);
               return (
                 <Route key={r} path={`${routendame}`} element={rou.element} />

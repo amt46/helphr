@@ -1,10 +1,16 @@
-import how_to_draw_shift from "./how_to_draw_shift_and_create_schedule.mp4";
+import { url } from "./utils";
 
 const Video = () => {
   return (
     <video controls width="100%">
-      <source src={how_to_draw_shift} type="video/webm" />
-      <source src={how_to_draw_shift} type="video/mp4" />
+      <source
+        src={`${url}/how_to_draw_shift_and_create_schedule-KM3mH6aQ.mp4`}
+        type="video/webm"
+      />
+      <source
+        src={`${url}/how_to_draw_shift_and_create_schedule-KM3mH6aQ.mp4`}
+        type="video/mp4"
+      />
       Sorry, your browser doesn't support videos.
     </video>
   );
